@@ -1,22 +1,20 @@
 import { Link } from 'react-router-dom';
 
-const baseUrlImg = `https://image.tmdb.org/t/p/w500`;
-
 const Movie = ({ movie }) => {
-  const {
-    title,
-    release_date,
-    overview,
-    genre_ids,
-    popularity,
-    poster_path = `/oHhD5jD4S5ElPNNFCDKXJAzMZ5h.jpg`,
-  } = movie;
+  const { title, release_date, overview, genre_ids, popularity, poster_path } =
+    movie;
+
+  let baseUrlImg = `https://image.tmdb.org/t/p/w500${poster_path}`;
+
+  if (!poster_path) {
+    baseUrlImg = `https://netsh.pp.ua/wp-content/uploads/2017/08/Placeholder-1.png`;
+  }
 
   return (
     <>
       <div>
         <button type="butoon">{`<- Go beack`}</button>
-        <img src={`${baseUrlImg}${poster_path}`} alt="poster" width={250} />
+        <img src={baseUrlImg} alt="poster" width={250} />
         <h2>
           {title}
           <span> {`(${release_date})`}</span>

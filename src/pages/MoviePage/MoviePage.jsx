@@ -16,7 +16,7 @@ const MoviePage = () => {
 
   return (
     <main>
-      <Movie movie={movie} />
+      {movie && <Movie movie={movie} />}
     </main>
   );
 };
