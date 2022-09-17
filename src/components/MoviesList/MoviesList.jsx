@@ -1,7 +1,6 @@
 import MovieItem from 'components/MovieItem/MovieItem';
 
-const MoviesList = ({ movies, selectMovie }) => {
-  
+const MoviesList = ({ movies }) => {
   return (
     <ul>
       {movies.map(e => {

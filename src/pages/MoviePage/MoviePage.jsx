@@ -14,7 +14,11 @@ const MoviePage = () => {
     });
   }, [id]);
 
-  return <Movie movie={movie} />;
+  return (
+    <main>
+      <Movie movie={movie} />
+    </main>
+  );
 };
 
 export default MoviePage;

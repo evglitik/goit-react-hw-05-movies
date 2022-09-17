@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { getMovies } from 'service/api';
 import { useEffect } from 'react';
 
-
 export const App = () => {
   const [movieInTraid, setMovieInTraid] = useState([]);
   const [isLoader, setIsLoader] = useState(false);

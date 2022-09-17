@@ -10,5 +10,3 @@ const Home = ({ movies }) => {
 };
 
 export default Home;
-
-// getMovies()
