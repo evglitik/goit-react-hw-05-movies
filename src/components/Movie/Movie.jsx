@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 
 const baseUrlImg = `https://image.tmdb.org/t/p/w500`;
 
-//  = `/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg`,
-
 const Movie = ({ movie }) => {
   const { title, release_date, overview, genre_ids, popularity, poster_path } =
     movie;

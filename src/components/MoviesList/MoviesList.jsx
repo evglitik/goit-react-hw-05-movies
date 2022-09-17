@@ -1,5 +1,4 @@
 import MovieItem from 'components/MovieItem/MovieItem';
-import { findFilm } from 'service/findFilm';
 
 const MoviesList = ({ movies, selectMovie }) => {
   
