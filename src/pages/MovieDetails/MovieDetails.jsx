@@ -1,6 +1,7 @@
 import { getMoviesDetails } from 'service/api';
 import { useState, useRef, Suspense, useEffect } from 'react';
 import Movie from 'components/Movie/Movie';
+import { LinkBeack, MovieDetailsContainer } from './MovieDetails.styled';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
@@ -17,13 +18,13 @@ const MovieDetails = () => {
   }, [id]);
 
   return (
-    <main>
-      <Link to={src.current}>{`<--- beack`}</Link>
+    <MovieDetailsContainer>
+      <LinkBeack to={src.current}>{`← Go beack`}</LinkBeack>
       {movie && <Movie movie={movie} />}
       <Suspense fallback={<div>Loader.........</div>}>
         <Outlet />
       </Suspense>
-    </main>
+    </MovieDetailsContainer>
   );
 };
 

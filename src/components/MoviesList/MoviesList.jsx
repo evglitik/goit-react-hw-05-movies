@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import MovieItem from 'components/MovieItem/MovieItem';
 import { useLocation } from 'react-router-dom';
 
@@ -21,3 +22,12 @@ const MoviesList = ({ movies }) => {
 };
 
 export default MoviesList;
+
+MoviesList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+    }).isRequired
+  ),
+};

@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
+
 import { useState } from 'react';
+import { SubmitButtom } from './SearchBox.styled';
 
 const SearchBox = ({ onSubmit }) => {
   const [request, setRequest] = useState('');
@@ -24,11 +27,15 @@ const SearchBox = ({ onSubmit }) => {
         placeholder="Search movies"
         onChange={e => setRequest(e.currentTarget.value.toLowerCase())}
       />
-      <button type="submit">
+      <SubmitButtom type="submit">
         <span>Search</span>
-      </button>
+      </SubmitButtom>
     </form>
   );
 };
 
 export default SearchBox;
+
+SearchBox.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

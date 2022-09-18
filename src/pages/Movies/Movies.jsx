@@ -1,6 +1,7 @@
 import SearchBox from 'components/SearchBox/SearchBox';
 import { searchMovies } from 'service/api';
 import MoviesList from 'components/MoviesList/MoviesList';
+import { MoviesContainer } from './Movies.styled';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -26,10 +27,10 @@ const Movies = () => {
   };
 
   return (
-    <main>
+    <MoviesContainer>
       <SearchBox onSubmit={handleFormSubmit} />
       <MoviesList movies={movies} />
-    </main>
+    </MoviesContainer>
   );
 };
 

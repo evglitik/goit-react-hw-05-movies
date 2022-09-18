@@ -1,6 +1,7 @@
 import MoviesList from 'components/MoviesList/MoviesList';
 import { useState, useEffect } from 'react';
 import { getMovies } from 'service/api';
+import { Box } from 'Box';
 
 const Home = () => {
   const [movieInTraid, setMovieInTraid] = useState([]);
@@ -14,10 +15,10 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
+    <Box as='main' p='10px'>
       <h3>Trend list</h3>
       <MoviesList movies={movieInTraid} />
-    </main>
+    </Box>
   );
 };
 

@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types';
+import {
+  MovieInfoContainer,
+  GanreList,
+  Aditional,
+  AditionalList,
+} from './Movie.styled';
+import { cutString, countProcentVote } from 'service/fixString';
 import { Link } from 'react-router-dom';
 
 const Movie = ({ movie }) => {
-  const {
-    title,
-    release_date,
-    overview,
-    genre_ids,
-    popularity,
-    poster_path,
-    id,
-  } = movie;
+  const { title, release_date, overview, poster_path, vote_count, id, genres } =
+    movie;
 
   let baseUrlImg = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
@@ -19,24 +20,33 @@ const Movie = ({ movie }) => {
 
   return (
     <>
-      <div>
-        <img src={baseUrlImg} alt="poster" width={250} />
-        <h2>
-          {title}
-          <span> {`(${release_date})`}</span>
-        </h2>
+      <MovieInfoContainer>
+        <div>
+          <img src={baseUrlImg} alt="poster" width={250} />
+        </div>
 
-        <p>
-          UserScore: <span>{popularity}</span>
-        </p>
-        <h3>Overvie</h3>
-        <p>{overview}</p>
-        <h3>Generes</h3>
-        <p>{genre_ids}</p>
-      </div>
-      <div>
-        <h3>Aditional info</h3>
-        <ul>
+        <div>
+          <h2>
+            {title}
+            <span> {`(${cutString(release_date)})`}</span>
+          </h2>
+
+          <p>
+            User Score: <span>{countProcentVote(vote_count)}%</span>
+          </p>
+          <h3>Overvie</h3>
+          <p>{overview}</p>
+          <h3>Generes</h3>
+          <GanreList>
+            {genres.map(({ id, name }) => (
+              <li key={id}>{name}</li>
+            ))}
+          </GanreList>
+        </div>
+      </MovieInfoContainer>
+      <Aditional>
+        <p>Aditional information</p>
+        <AditionalList>
           <li>
             <Link to="cast" id={id}>
               Cast
@@ -47,10 +57,22 @@ const Movie = ({ movie }) => {
               Reviews
             </Link>
           </li>
-        </ul>
-      </div>
+        </AditionalList>
+      </Aditional>
     </>
   );
 };
 
 export default Movie;
+
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    overview: PropTypes.string,
+    poster_path: PropTypes.string,
+    vote_count: PropTypes.number,
+    id: PropTypes.number,
+    genres: PropTypes.array,
+  }).isRequired,
+};

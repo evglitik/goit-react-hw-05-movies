@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const MovieItem = ({ name, id, state }) => {
@@ -11,3 +12,8 @@ const MovieItem = ({ name, id, state }) => {
 };
 
 export default MovieItem;
+
+MovieItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+};
