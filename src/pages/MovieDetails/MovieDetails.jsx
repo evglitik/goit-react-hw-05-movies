@@ -2,7 +2,7 @@ import { getMoviesDetails } from 'service/api';
 import { useState, useRef, Suspense, useEffect } from 'react';
 import Movie from 'components/Movie/Movie';
 import { LinkBeack, MovieDetailsContainer } from './MovieDetails.styled';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
   const location = useLocation();
