@@ -35,4 +35,22 @@ export const searchMovies = async request => {
   //   });
 };
 
+export const getCast = async id => {
+  const response = await axios.get(`movie/${id}/credits?${KEY}&language=en-US`);
+
+  return response.data.cast;
+  //   return response.results.map(({ id, webformatURL, largeImageURL }) => {
+  //     return { id, webformatURL, largeImageURL };
+  //   });
+};
+
+export const getReviews = async id => {
+  const response = await axios.get(`movie/${id}/reviews?${KEY}&language=en-US`);
+  return response.data.results;
+  //   return response.results.map(({ id, webformatURL, largeImageURL }) => {
+  //     return { id, webformatURL, largeImageURL };
+  //   });
+};
+
+// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false

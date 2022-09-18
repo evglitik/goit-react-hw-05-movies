@@ -11,6 +11,7 @@ const Movies = () => {
 
   useEffect(() => {
     if (!movieName) {
+      setMovies([]);
       return;
     }
 

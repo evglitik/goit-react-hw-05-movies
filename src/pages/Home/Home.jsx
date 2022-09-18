@@ -1,10 +1,22 @@
-import MoviesList from "components/MoviesList/MoviesList";
+import MoviesList from 'components/MoviesList/MoviesList';
+import { useState, useEffect } from 'react';
+import { getMovies } from 'service/api';
 
-const Home = ({ movies }) => {
+const Home = () => {
+  const [movieInTraid, setMovieInTraid] = useState([]);
+
+  useEffect(() => {
+    getMovies()
+      .then(r => {
+        setMovieInTraid(m => [...r]);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <main>
-      <h3>(home page) Trend list</h3>
-      <MoviesList movies={movies} />
+      <h3>Trend list</h3>
+      <MoviesList movies={movieInTraid} />
     </main>
   );
 };

@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom';
 
 const Movie = ({ movie }) => {
-  const { title, release_date, overview, genre_ids, popularity, poster_path } =
-    movie;
+  const {
+    title,
+    release_date,
+    overview,
+    genre_ids,
+    popularity,
+    poster_path,
+    id,
+  } = movie;
 
   let baseUrlImg = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
@@ -13,7 +20,6 @@ const Movie = ({ movie }) => {
   return (
     <>
       <div>
-        <button type="butoon">{`<- Go beack`}</button>
         <img src={baseUrlImg} alt="poster" width={250} />
         <h2>
           {title}
@@ -32,10 +38,14 @@ const Movie = ({ movie }) => {
         <h3>Aditional info</h3>
         <ul>
           <li>
-            <Link>Cast</Link>
+            <Link to="cast" id={id}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link>Reviews</Link>
+            <Link to="reviews" id={id}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>

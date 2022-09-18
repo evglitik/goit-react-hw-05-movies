@@ -1,39 +1,26 @@
 import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
-import Home from 'pages/Home/Home';
-import Movies from 'pages/Movies/Movies';
-import MoviePage from 'pages/MoviePage/MoviePage';
-import { useState } from 'react';
-import { getMovies } from 'service/api';
-import { useEffect } from 'react';
+
+const Movies = lazy(() => import('../../pages/Movies/Movies'));
+const Home = lazy(() => import('../../pages/Home/Home'));
+const MovieDetails = lazy(() =>
+  import('../../pages/MovieDetails/MovieDetails')
+);
+const CastList = lazy(() => import('../CastList/CastList'));
+const ReviewsList = lazy(() => import('../ReviewsList/ReviewsList'));
 
 export const App = () => {
-  const [movieInTraid, setMovieInTraid] = useState([]);
-  const [isLoader, setIsLoader] = useState(false);
-
-  useEffect(() => {
-
-    setIsLoader(l => (l = true));
-
-    getMovies()
-      .then(r => {
-        setMovieInTraid(m => [...r]);
-      })
-      .catch(err => console.log(err))
-      .finally(() => setIsLoader(l => (l = false)));
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route
-          index
-          element={
-            isLoader ? <div>Loader..</div> : <Home movies={movieInTraid} />
-          }
-        />
+        <Route path="*" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="movies" element={<Movies />} />
-        <Route path="movies/:id" element={<MoviePage />} />
+        <Route path="movies/:id" element={<MovieDetails />}>
+          <Route path="cast" element={<CastList />} />
+          <Route path="reviews" element={<ReviewsList />} />
+        </Route>
       </Route>
     </Routes>
   );
